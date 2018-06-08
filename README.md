@@ -1,4 +1,5 @@
 # kaggle
+- https://www.kaggle.com/learn/machine-learning
 - https://www.kaggle.com/c/titanic#tutorials
 - https://www.kaggle.com/startupsci/titanic-data-science-solutions
 - https://github.com/scikit-learn-contrib/sklearn-pandas
