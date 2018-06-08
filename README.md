@@ -4,3 +4,4 @@
 - https://csvkit.readthedocs.io/en/1.0.2/
 - https://www.springboard.com/blog/data-wrangling/
 - https://www.springboard.com/blog/machine-learning-interview-questions/
+- https://www.springboard.com/blog/data-science-interview-questions/
