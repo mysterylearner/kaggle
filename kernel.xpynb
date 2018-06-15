@@ -1,0 +1,126 @@
+{
+  "cells": [
+    {
+      "metadata": {
+        "_uuid": "8f2839f25d086af736a60e9eeb907d3b93b6e0e5",
+        "_cell_guid": "b1076dfc-b9ad-4769-8c92-a6c4dae69d19",
+        "trusted": true,
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "# This Python 3 environment comes with many helpful analytics libraries installed\n# It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python\n# For example, here's several helpful packages to load in \n\nimport numpy as np # linear algebra\nimport pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)\n\n# Input data files are available in the \"../input/\" directory.\n# For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory\n\nimport os\nprint(os.listdir(\"../input\"))\n\n# Any results you write to the current directory are saved as output.",
+      "execution_count": 18,
+      "outputs": []
+    },
+    {
+      "metadata": {
+        "_cell_guid": "79c7e3d0-c299-4dcb-8224-4455121ee9b0",
+        "_uuid": "d629ff2d2480ee46fbb7e2d37f6b5fab8052498a",
+        "trusted": true,
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "train_data = pd.read_csv('../input/train.csv', header = 0,index_col=0)\ntrain_data.head()\n",
+      "execution_count": 40,
+      "outputs": []
+    },
+    {
+      "metadata": {
+        "trusted": true,
+        "_uuid": "1efceb78c68aed4ad0208da93b6188527b834187",
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "test_data = pd.read_csv('../input/test.csv', header = 0,index_col=0)\ntest_data.head()\n\ntest_index  = test_data.index\nprint(test_index)",
+      "execution_count": 61,
+      "outputs": []
+    },
+    {
+      "metadata": {
+        "trusted": true,
+        "_uuid": "8a9b52b3644d4247ca8fdde8c9434bcc7383f86f",
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "columns = train_data.columns\nprint(columns)\n\nvalues = train_data.values\nprint(values)\n\ntrain_index  = train_data.index\nprint(train_index)\n\n",
+      "execution_count": 25,
+      "outputs": []
+    },
+    {
+      "metadata": {
+        "trusted": true,
+        "_uuid": "6fe4b69fe5867a1c826380ca325492e4e9d0c353",
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "y_train = train_data['Survived']\nprint(y_train)\n\n",
+      "execution_count": 53,
+      "outputs": []
+    },
+    {
+      "metadata": {
+        "trusted": true,
+        "_uuid": "ff8766abfcb2a8eb07f9c9e77aa6fd7379c7cc5a",
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "#X_train = train_data[columns[1:]]\nX_train = train_data[['Pclass']]\nprint(X_train)\n\n#X_test = test_data[columns[1:]]\nX_test = test_data[['Pclass']]\nprint(X_test)",
+      "execution_count": 51,
+      "outputs": []
+    },
+    {
+      "metadata": {
+        "trusted": true,
+        "_uuid": "9b04c8262081563c13fdc623dae57b28eab4ff35",
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "from sklearn import datasets, neighbors, linear_model\n\nlogistic = linear_model.LogisticRegression()\nscore = logistic.fit(X_train, y_train);\n\ny_test = logistic.predict(X_test)\nprint(y_test)\n",
+      "execution_count": 58,
+      "outputs": []
+    },
+    {
+      "metadata": {
+        "trusted": true,
+        "_uuid": "d43090944c04016fd655481d82c3c95913bbec30",
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "output = pd.DataFrame({'PassengerId':test_index, 'Survived':y_test})\nprint(output)",
+      "execution_count": 62,
+      "outputs": []
+    },
+    {
+      "metadata": {
+        "trusted": true,
+        "_uuid": "4edbef06a31b392e380a56e70f88c88ea9ee28ec",
+        "collapsed": true
+      },
+      "cell_type": "code",
+      "source": "output.to_csv(\"pclass.csv\", index=False)",
+      "execution_count": 64,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python",
+      "version": "3.6.5",
+      "mimetype": "text/x-python",
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "pygments_lexer": "ipython3",
+      "nbconvert_exporter": "python",
+      "file_extension": ".py"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 1
+}
